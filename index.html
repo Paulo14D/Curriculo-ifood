@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu do Candidato - Paulo Dias</title>
+    <style>
+        * { box-sizing: border-box; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        body { margin: 0; background-color: #f7f7f7; color: #3e3e3e; padding-bottom: 80px; }
+        header { background-color: #ea1d2c; color: white; padding: 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        header h1 { margin: 0; font-size: 1.5rem; }
+        header p { margin: 5px 0 0 0; font-size: 0.9rem; opacity: 0.9; }
+        .container { max-width: 600px; margin: 0 auto; padding: 15px; }
+        .category-title { font-size: 1.2rem; font-weight: 600; margin: 25px 0 15px; color: #3e3e3e; }
+        .item-card { background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+        .item-info { flex: 1; padding-right: 15px; }
+        .item-info h3 { margin: 0 0 8px 0; font-size: 1rem; color: #3e3e3e; }
+        .item-info p { margin: 0; font-size: 0.85rem; color: #717171; line-height: 1.4; }
+        .add-btn { background-color: white; border: 1px solid #ea1d2c; color: #ea1d2c; width: 40px; height: 40px; border-radius: 5px; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: 0.2s; }
+        .add-btn.added { background-color: #ea1d2c; color: white; }
+        
+        .cart-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px 20px; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; z-index: 10; }
+        .cart-info { font-weight: 600; color: #3e3e3e; }
+        .cart-btn { background-color: #ea1d2c; color: white; border: none; padding: 12px 24px; border-radius: 4px; font-size: 1rem; font-weight: 600; cursor: pointer; }
+        
+        #modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 20; justify-content: center; align-items: flex-end; }
+        .modal-content { background: white; width: 100%; max-width: 600px; border-radius: 16px 16px 0 0; padding: 20px; max-height: 80vh; overflow-y: auto; animation: slideUp 0.3s ease-out; }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px; }
+        .modal-header h2 { margin: 0; font-size: 1.2rem; }
+        .close-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #ea1d2c; }
+        .cart-items-list { list-style: none; padding: 0; margin: 0 0 20px 0; }
+        .cart-items-list li { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #eee; font-size: 0.9rem; }
+        .checkout-btn { width: 100%; background-color: #ea1d2c; color: white; border: none; padding: 15px; border-radius: 4px; font-size: 1rem; font-weight: 600; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Paulo Delivery 🚀</h1>
+        <p>Engenharia Mecatrônica & Automação</p>
+    </header>
+
+    <div class="container">
+        <!-- Formação e Idiomas -->
+        <div class="category-title">Entradas (Formação e Idiomas)</div>
+        
+        <div class="item-card">
+            <div class="item-info">
+                <h3>Engenharia Mecatrônica</h3>
+                <p>UNIP (Jan/23 - Jun/28). Foco em controle e automação.</p>
+            </div>
+            <button class="add-btn" onclick="toggleItem(this, 'Engenharia Mecatrônica')">+</button>
+        </div>
+
+        <div class="item-card">
+            <div class="item-info">
+                <h3>Inglês Básico (B1)</h3>
+                <p>Leitura técnica e acompanhamento de projetos.</p>
+            </div>
+            <button class="add-btn" onclick="toggleItem(this, 'Inglês Básico')">+</button>
+        </div>
+
+        <!-- Hard Skills -->
+        <div class="category-title">Pratos Principais (Hard Skills)</div>
+
+        <div class="item-card">
+            <div class="item-info">
+                <h3>Excel Avançado</h3>
+                <p>Domínio em VBA e Power Query para automação de planilhas.</p>
+            </div>
+            <button class="add-btn" onclick="toggleItem(this, 'Excel VBA e Power Query')">+</button>
+        </div>
+
+        <div class="item-card">
+            <div class="item-info">
+                <h3>Autodesk Revit & AutoCAD</h3>
+                <p>Modelagem BIM, instalações elétricas e plantas 2D.</p>
+            </div>
+            <button class="add-btn" onclick="toggleItem(this, 'Revit e AutoCAD')">+</button>
+        </div>
+
+        <!-- Experiências -->
+        <div class="category-title">Combos (Experiência Profissional)</div>
+
+        <div class="item-card">
+            <div class="item-info">
+                <h3>Projetista Elétrico BIM</h3>
+                <p>Dimensionamento de circuitos e prevenção de interferências (Clashes).</p>
+            </div>
+            <button class="add-btn" onclick="toggleItem(this, 'Experiência BIM')">+</button>
+        </div>
+
+        <div class="item-card">
+            <div class="item-info">
+                <h3>Liderança em Protótipo Automatizado</h3>
+                <p>Programação embarcada, sensores e gestão de componentes.</p>
+            </div>
+            <button class="add-btn" onclick="toggleItem(this, 'Liderança em Automação')">+</button>
+        </div>
+
+        <!-- Soft Skills -->
+        <div class="category-title">Sobremesas (Soft Skills)</div>
+
+        <div class="item-card">
+            <div class="item-info">
+                <h3>Inteligência Emocional</h3>
+                <p>Resiliência e comunicação técnica eficiente.</p>
+            </div>
+            <button class="add-btn" onclick="toggleItem(this, 'Inteligência Emocional e Oratória')">+</button>
+        </div>
+    </div>
+
+    <!-- Barra Inferior -->
+    <div class="cart-bar">
+        <div class="cart-info"><span id="item-count">0</span> habilidades</div>
+        <button class="cart-btn" onclick="openCart()">Ver Pedido</button>
+    </div>
+
+    <!-- Modal do Pedido -->
+    <div id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Cesta do Recrutador</h2>
+                <button class="close-btn" onclick="closeCart()">×</button>
+            </div>
+            <ul class="cart-items-list" id="cart-list"></ul>
+            <button class="checkout-btn" onclick="checkout()">Contratar Paulo Sergio!</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function toggleItem(btn, itemName) {
+            const index = cart.indexOf(itemName);
+            if (index > -1) {
+                cart.splice(index, 1);
+                btn.innerHTML = "+";
+                btn.classList.remove("added");
+            } else {
+                cart.push(itemName);
+                btn.innerHTML = "✓";
+                btn.classList.add("added");
+            }
+            document.getElementById('item-count').innerText = cart.length;
+        }
+
+        function openCart() {
+            const list = document.getElementById('cart-list');
+            list.innerHTML = '';
+            
+            if(cart.length === 0) {
+                list.innerHTML = '<li>Selecione habilidades no cardápio primeiro.</li>';
+            } else {
+                cart.forEach(item => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<span>1x ${item}</span> <span>Excelente Escolha</span>`;
+                    list.appendChild(li);
+                });
+            }
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function closeCart() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        function checkout() {
+            if(cart.length === 0) return alert("Adicione habilidades ao pedido!");
+            const skills = cart.join(", ");
+            const text = `Olá, Paulo! Vi seu currículo interativo e me interessei pelo seu perfil. O meu "pedido" inclui: ${skills}. Vamos agendar uma entrevista?`;
+            
+            // Redireciona o recrutador para o seu WhatsApp
+            window.open(`https://wa.me/5511987268362?text=${encodeURIComponent(text)}`, '_blank');
+        }
+    </script>
+</body>
+</html>
